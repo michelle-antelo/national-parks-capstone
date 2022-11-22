@@ -24,9 +24,9 @@ ___
   - User Database - done
   - User page - done
     - Logout Button - done
-    - Edit User Button
+    - Edit User Button - done
     - User Data Display - done
-  - Edit user Page 
+  - Edit user Page - done
   - Users Social Page 
     - Lists users liked Parks
   - Login/Signup - done

@@ -37,7 +37,7 @@ class User(db.Model):
     )
 
     image_url = db.Column(
-        db.Text,,
+        db.Text,
     )
 
     bio = db.Column(

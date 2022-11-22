@@ -7,6 +7,7 @@
     <title>Natty Parks {% block title %}{% endblock %}</title>
 
     <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/profile.css">
 </head>
 {% block body %}
     <nav class="nav-bar">
@@ -15,16 +16,15 @@
             <div class="button-wrapper">
                 <div class="nav-button"><a href='./'>Home</a></div>
                 {% if not g.user %}
-                    <div class="nav-button-right"><a href='/signup'>Sign up</a></div>
-                    <div class="nav-button-right"><a href='/login'>Login</a></div>
+                    <div class="nav-button"><a href='/signup'>Sign up</a></div>
+                    <div class="nav-button"><a href='/login'>Login</a></div>
                 {% else %}
-                    <div class="nav-button-right"><a href='/profile'>Profile</a></div>
-                    <div class="nav-button-right"><a href='/logout'>Logout</a></div>
+                    <div class="nav-button"><a href='/profile'>Profile</a></div>
+                    <div class="nav-button"><a href='/logout'>Logout</a></div>
                 {% endif %}
                 {% if request.endpoint != None %}
                 <form class="nav-button" action="/users">
                     <input name="q" class="form-control" placeholder="Find friends" id="search">
-                    <button>Search</button>
                 </form>
                 {% endif %}
             </div>

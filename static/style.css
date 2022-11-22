@@ -1,12 +1,16 @@
 html, body {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
     margin: 0;
     top: 0;
     left: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .nav-bar {
     position: relative;
-    width: 100vw;
+    width: 100%;
     height: 50px;
     margin: 0;
     border: none;
@@ -30,40 +34,30 @@ html, body {
 }
 
 .button-wrapper {
-    position: relative;
+    position: absolute;
     top: 0;
-    left: 50px;
+    width: 100%;
     display: flex;
+    justify-content: right;
 }
 
 .nav-button{
     position: relative;
-    width: 100px;
-    height: 50px;
+    margin: 10px;
+    height: 100%;
     display: inline-grid;
-    align-items: center;
+
 }
 
 .nav-button > a {
+    position: relative;
     color: white;
     text-align: center;
     text-decoration: none;
     font-size: large;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    line-height: 25px;
+    height: 100%;
 }
-
-.nav-button-right {
-    width: 100px;
-    height: 50px;
-    display: inline-grid;
-    align-items: center;
-    right: -50px;
-}
-
-.nav-button-right > a {
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    font-size: large;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+.nav-button > a:hover {
+    top: -2px;
 }

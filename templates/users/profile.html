@@ -1,19 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="header-container">
+  <div class="header-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/20/Zion_wikivoyage_banner.jpg');" alt="Image for user profile page."></div>
+</div>
 
-<img src="{{ user.header_image_url }}" alt="Header image for {{ user.username }}"class="full-width"></img>
-<img src="{{ user.image_url }}" alt="Image for {{ user.username }}" id="profile-avatar">
+<div class="profile-container">
 
-<div class="row">
-  <div class="col-sm-3">
-    <h4 id="sidebar-username">@{{ user.username }}</h4>
-    <p>{{ user.bio }}</p>
+  <div class="profile-image-container">
+    <div class="profile-image" style="background-image: url('{{user.image_url}}');" alt="Image for {{ user.username }}"></div>
+  </div>
+
+  <div class="profile-text-wrapper">
+    <h2 class="user-name">@{{ user.username }}</h2>
+    <p class="user-bio">{{ user.bio }}</p>
     <p class="user-location">{{ user.location }}</p>
   </div>
-  <form action="/profile/edit">
-    <button>Edit Profile</button>
-  </form>
+
+  <a class="user-edit" href="/profile/edit">Edit Profile</a>
 </div>
 
 {% endblock %}

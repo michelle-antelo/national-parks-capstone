@@ -22,8 +22,14 @@ app.app_context().push()
 
 connect_db(app)
 
-# db.drop_all()
-# db.create_all()
+##############################################################################
+# Homepage
+
+@app.route('/')
+def homepage():
+    """Render Homepage"""
+    
+    return render_template("home.html")
 
 ##############################################################################
 # User signup/login/logout
@@ -50,7 +56,6 @@ def do_logout():
     if CURR_USER_KEY in session:
         del session[CURR_USER_KEY]
 
-
 @app.route('/signup', methods=["GET", "POST"])
 def signup():
     """User signup / Create user in db and redirect to home"""
@@ -73,7 +78,7 @@ def signup():
 
         except IntegrityError:
             flash("Username already taken", 'danger')
-            return render_template('user/signup.html', form=form)
+            return render_template('users/signup.html', form=form)
 
         do_login(user)
 
@@ -90,8 +95,8 @@ def login():
     form = LoginForm()
 
     if form.validate_on_submit():
-        user = User.authenticate(form.username.data,
-                                 form.password.data)
+        print('Username: ', form.username.data, "Password? ", form.password.data)
+        user = User.authenticate(form.username.data, form.password.data)
 
         if user:
             do_login(user)
@@ -111,14 +116,6 @@ def logout():
     flash("Successfully logged out!", "success")
     return redirect("/")
 
-
-##############################################################################
-# Homepage
-
-@app.route('/')
-def homepage():
-    """Render Homepage"""
-    return render_template("home.html")
 
 ##############################################################################
 # View/edit profiles

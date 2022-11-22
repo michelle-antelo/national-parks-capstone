@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natty Parks {% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+{% block body %}
+    <nav class="nav-bar">
+        <div class="nav-wrapper">
+            <a href='./' class="site-logo" style="background-image: url('https://www.nps.gov/common/commonspot/templates/assets/images/branding/logo.png');"></a>
+            <div class="button-wrapper">
+                <div class="nav-button"><a href='./'>Home</a></div>
+                {% if logged_in == True %}
+                    <div class="nav-button-right"><a href='./profile'>Profile</a></div>
+                    <div class="nav-button-right"><a href='./logout'>Logout</a></div>
+                {% else %}
+                    <div class="nav-button-right"><a href='./login-signup'>Login/Signup</a></div>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    {% block content %}{% endblock %}
+{% endblock %}
+</html>

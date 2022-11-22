@@ -1,25 +1,19 @@
-# National Parks App
+# Natty Parks App
 By Michelle Antelo
 ___
-
 Table Of Contents
-- [National Parks App](#national-parks-app)
+- [Natty Parks App](#natty-parks-app)
   - [Description](#description)
-  - [Api](#api)
     - [MVP Features](#mvp-features)
     - [Planned Features](#planned-features)
+  - [Api](#api)
+  - [Initializing Project](#initializing-project)
   - [User Story](#user-story)
   - [Data Flow](#data-flow)
   - [Database Schema](#database-schema)
-
 ___
-
 ## Description
 This app will highlight facts and information of all the US National Parks. Through this app, users will be able to create an account allowing them to favorite and plan future trips to these locations! Once they've visited a location, they can insert their photos, caption their memories, and upload them for all of their friends and families to see! They will also be able to submit ratings and comments on visited locations for everyone else to see!
-
-___
-## Api
-  https://rapidapi.com/jonahtaylor/api/national-park-service/
 ___
 ### MVP Features
 - Parks
@@ -52,6 +46,17 @@ ___
 - Add photos on each park page
 - Chat feature with friends
 - Send parks to friends
+___
+## Api
+  [National Park Api](https://rapidapi.com/jonahtaylor/api/national-park-service/)
+___
+
+## Initializing Project
+    $ python3 -m venv venv
+    $ source venv/bin/activate
+    $ pip install -r requirements.txt
+    $ createdb natty_parks   
+    $ flask run
 ___
 ## User Story
 As a Hiker

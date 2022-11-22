@@ -4,7 +4,7 @@ from flask import Flask, session, request, render_template, redirect, flash, g
 from sqlalchemy.exc import IntegrityError
 
 from models import db, connect_db, User
-from forms import UserAddForm, LoginForm
+from forms import UserAddForm, LoginForm, UpdateUserForm
 
 CURR_USER_KEY = "curr_user"
 
@@ -126,9 +126,39 @@ def homepage():
 @app.route('/profile')
 def view_profile():
     """View user profile"""
-    user = g.user
+
+    user = User.query.get(session[CURR_USER_KEY])
+
     return render_template("users/profile.html", user=user)
 
+@app.route('/profile/edit', methods=["GET", "POST"])
+def edit_profile():
+    """Edit profile"""
+    user = User.query.get(session[CURR_USER_KEY])
+    form = UpdateUserForm()
+
+    if form.validate_on_submit():
+        user.username=form.username.data,
+        user.first_name=form.first_name.data,
+        user.last_name=form.last_name.data,
+        user.password=form.password.data,
+        user.email=form.email.data,
+        user.image_url=form.image_url.data or User.image_url.default.arg,
+        user.header_image_url=form.header_image_url.data or User.header_image_url.default.arg,
+        user.bio=form.bio.data
+        user.location=form.location.data
+            
+        db.session.commit()
+
+        flash(f"Successfully updated {user.username}!", "success")
+        return redirect(f"/profile")
+
+    elif IntegrityError:
+        # flash("Username already taken", 'danger')
+        return render_template('users/edit.html', form=form)
+
+    else:
+        return render_template('users/edit.html', form=form)
 
 @app.route('/users')
 def list_users():

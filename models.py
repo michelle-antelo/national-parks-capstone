@@ -37,8 +37,7 @@ class User(db.Model):
     )
 
     image_url = db.Column(
-        db.Text,
-        default="/static/images/default-pic.png",
+        db.Text,,
     )
 
     bio = db.Column(

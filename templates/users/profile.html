@@ -1,5 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1> Hello! I am {{ user.username }}</h1>
+
+<img src="{{ user.header_image_url }}" alt="Header image for {{ user.username }}"class="full-width"></img>
+<img src="{{ user.image_url }}" alt="Image for {{ user.username }}" id="profile-avatar">
+
+<div class="row">
+  <div class="col-sm-3">
+    <h4 id="sidebar-username">@{{ user.username }}</h4>
+    <p>{{ user.bio }}</p>
+    <p class="user-location">{{ user.location }}</p>
+  </div>
+  <form action="/profile/edit">
+    <button>Edit Profile</button>
+  </form>
+</div>
+
 {% endblock %}

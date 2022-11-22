@@ -20,21 +20,21 @@ ___
   - Parks List
   - Parks Data Page
   - Users can favorite Parks
-- Add Users
+- Add Users - done
   - User Database - done
-  - User page
+  - User page - done
     - Logout Button - done
     - Edit User Button
-    - User Data Display
+    - User Data Display - done
   - Edit user Page 
-  - Users Social Page
+  - Users Social Page 
     - Lists users liked Parks
-  - Login/Signup
+  - Login/Signup - done
     - Login User form - done
     - Signup User Form - done
 ___
 ### Planned Features
-- Search Bar
+- Search Bar - done
 - Users Can
   - Plan trips to locations! 
   - Insert Photos

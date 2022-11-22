@@ -4,7 +4,7 @@ from flask import Flask, session, request, render_template, redirect, flash, g
 from sqlalchemy.exc import IntegrityError
 
 from models import db, connect_db, User
-from forms import UserAddForm
+from forms import UserAddForm, LoginForm
 
 CURR_USER_KEY = "curr_user"
 
@@ -21,8 +21,9 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', "it's a secret")
 app.app_context().push()
 
 connect_db(app)
-db.drop_all()
-db.create_all()
+
+# db.drop_all()
+# db.create_all()
 
 ##############################################################################
 # User signup/login/logout
@@ -60,6 +61,8 @@ def signup():
         try:
             user = User.signup(
                 username=form.username.data,
+                first_name=form.first_name.data,
+                last_name=form.last_name.data,
                 password=form.password.data,
                 email=form.email.data,
                 image_url=form.image_url.data or User.image_url.default.arg,
@@ -69,15 +72,44 @@ def signup():
             db.session.commit()
 
         except IntegrityError:
-            # flash("Username already taken", 'danger')
+            flash("Username already taken", 'danger')
             return render_template('user/signup.html', form=form)
 
         do_login(user)
 
+        flash(f"Hello, {user.first_name}!", "success")
         return redirect("/")
 
     else:
         return render_template('users/signup.html', form=form)
+
+@app.route('/login', methods=["GET", "POST"])
+def login():
+    """Handle user login."""
+
+    form = LoginForm()
+
+    if form.validate_on_submit():
+        user = User.authenticate(form.username.data,
+                                 form.password.data)
+
+        if user:
+            do_login(user)
+            flash(f"Hello, {user.first_name}!", "success")
+            return redirect("/")
+
+        flash("Invalid credentials.", 'danger')
+
+    return render_template('users/login.html', form=form)
+
+@app.route('/logout')
+def logout():
+    """Logout user"""
+
+    do_logout()
+
+    flash("Successfully logged out!", "success")
+    return redirect("/")
 
 
 ##############################################################################
@@ -85,21 +117,45 @@ def signup():
 
 @app.route('/')
 def homepage():
-    """Render List Parks"""
-    return render_template("home.html", logged_in = True )
+    """Render Homepage"""
+    return render_template("home.html")
 
 ##############################################################################
-# 
+# View/edit profiles
 
 @app.route('/profile')
-def user_page():
-    """Render Info / Edit page """
-    return render_template("home.html")
+def view_profile():
+    """View user profile"""
+    user = g.user
+    return render_template("users/profile.html", user=user)
 
-@app.route('/Park/<int:park_id>')
-def park_info():
-    """Render Park Information page"""
-    return render_template("home.html")
+
+@app.route('/users')
+def list_users():
+    """Page with listing of users.
+
+    Can take a 'q' param in querystring to search by that username.
+    """
+
+    search = request.args.get('q')
+
+    if not search:
+        users = User.query.all()
+    else:
+        users = User.query.filter(User.username.like(f"%{search}%")).all()
+
+    return render_template('users/index.html', users=users)
+
+@app.route('/users/<int:user_id>')
+def users_show(user_id):
+    """Show user profile."""
+
+    user = User.query.get_or_404(user_id)
+
+    return render_template('users/show.html', user=user)
+
+##############################################################################
+# Custom error handler
 
 @app.errorhandler(404)
 def NotFound(error):

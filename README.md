@@ -21,17 +21,17 @@ ___
   - Parks Data Page
   - Users can favorite Parks
 - Add Users
-  - User Database
+  - User Database - done
   - User page
-    - Logout Button
+    - Logout Button - done
     - Edit User Button
     - User Data Display
-  - Edit user Page
+  - Edit user Page 
   - Users Social Page
     - Lists users liked Parks
   - Login/Signup
-    - Login User form
-    - Signup User Form
+    - Login User form - done
+    - Signup User Form - done
 ___
 ### Planned Features
 - Search Bar
@@ -56,6 +56,7 @@ ___
     $ source venv/bin/activate
     $ pip install -r requirements.txt
     $ createdb natty_parks   
+    $ db.create.all()
     $ flask run
 ___
 ## User Story

@@ -26,6 +26,16 @@ class User(db.Model):
         unique=True,
     )
 
+    first_name = db.Column(
+        db.Text,
+        nullable=False,
+    )
+
+    last_name = db.Column(
+        db.Text,
+        nullable=False,
+    )
+
     image_url = db.Column(
         db.Text,
         default="/static/images/default-pic.png",
@@ -44,8 +54,12 @@ class User(db.Model):
         nullable=False,
     )
 
+    header_image_url = db.Column(
+        db.Text,
+    )
+
     @classmethod
-    def signup(cls, username, email, password, image_url, bio):
+    def signup(cls, username, first_name, last_name, email, password, image_url, bio):
         """Sign up user.
 
         Hashes password and adds user to system.
@@ -55,6 +69,8 @@ class User(db.Model):
 
         user = User(
             username=username,
+            first_name=first_name,
+            last_name=last_name,
             email=email,
             password=hashed_pwd,
             image_url=image_url,
@@ -63,6 +79,19 @@ class User(db.Model):
 
         db.session.add(user)
         return user
+
+    @classmethod
+    def authenticate(cls, username, password):
+        """Find user with `username` and `password`"""
+
+        user = cls.query.filter_by(username=username).first()
+
+        if user:
+            is_auth = bcrypt.check_password_hash(user.password, password)
+            if is_auth:
+                return user
+
+        return False
 
 def connect_db(app):
 

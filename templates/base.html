@@ -14,15 +14,28 @@
             <a href='./' class="site-logo" style="background-image: url('https://www.nps.gov/common/commonspot/templates/assets/images/branding/logo.png');"></a>
             <div class="button-wrapper">
                 <div class="nav-button"><a href='./'>Home</a></div>
-                {% if logged_in == True %}
-                    <div class="nav-button-right"><a href='./profile'>Profile</a></div>
-                    <div class="nav-button-right"><a href='./logout'>Logout</a></div>
-                {% else %}
+                {% if not g.user %}
                     <div class="nav-button-right"><a href='/signup'>Sign up</a></div>
+                    <div class="nav-button-right"><a href='/login'>Login</a></div>
+                {% else %}
+                    <div class="nav-button-right"><a href='/profile'>Profile</a></div>
+                    <div class="nav-button-right"><a href='/logout'>Logout</a></div>
+                {% endif %}
+                {% if request.endpoint != None %}
+                <form class="nav-button" action="/users">
+                    <input name="q" class="form-control" placeholder="Find friends" id="search">
+                    <button>Search</button>
+                </form>
                 {% endif %}
             </div>
         </div>
     </nav>
+    <div class="container">
+        {% for category, message in get_flashed_messages(with_categories=True) %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+    
     {% block content %}{% endblock %}
 {% endblock %}
 </html>

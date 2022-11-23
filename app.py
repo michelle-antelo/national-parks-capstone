@@ -2,11 +2,15 @@ import os
 
 from flask import Flask, session, request, render_template, redirect, flash, g
 from sqlalchemy.exc import IntegrityError
+import requests
 
 from models import db, connect_db, User
 from forms import UserAddForm, LoginForm, UpdateUserForm
 
 CURR_USER_KEY = "curr_user"
+
+API_KEY = os.environ.get('API_KEY')
+API_URL = os.environ.get('API_URL')
 
 app = Flask(__name__)
 
@@ -25,11 +29,20 @@ connect_db(app)
 ##############################################################################
 # Homepage
 
-@app.route('/')
+@app.route('/', methods=["GET", "POST"])
 def homepage():
-    """Render Homepage"""
-    
-    return render_template("home.html")
+    """Home page lists parks"""
+    parks_list = get_parks_list()
+    print('Rsponse: ', parks_list.json())
+    return render_template("home.html", parks_list=parks_list)
+
+def get_parks_list():
+    """Get parks from api"""
+    response = requests.get(
+        f"{API_URL}/parks?api_key={API_KEY}",
+        headers={"accept": "application/json"}
+    )
+    return response
 
 ##############################################################################
 # User signup/login/logout

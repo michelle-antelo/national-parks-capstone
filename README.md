@@ -17,21 +17,18 @@ This app will highlight facts and information of all the US National Parks. Thro
 ___
 ### Features
 - Parks
-  - Parks List - done
+  - Parks List
   - Parks Data Page
-  - Users can favorite Parks
-- Add Users - done
-  - User Database - done
-  - User page - done
-    - Logout Button - done
-    - Edit User Button - done
-    - User Data Display - done
-  - Edit user Page - done
-  - Users Social Page 
-    - Lists users liked Parks
-  - Login/Signup - done
-    - Login User form - done
-    - Signup User Form - done
+- Add Users 
+  - User Database
+  - User page 
+    - Logout Button
+    - Edit User Button
+    - User Data Display
+  - Edit user Page
+  - Login/Signup
+    - Login User form
+    - Signup User Form
 ___
 ### Planned Features
 - Search Bar - done
@@ -39,13 +36,14 @@ ___
   - Plan trips to locations! 
   - Insert Photos
     - Caption memories 
+  - Users can favorite Parks
+  - Users Social Page 
+    - Lists users liked Parks
   - Add friends and families
   - Submit ratings
   - Comments 
 - Add a map View of all the parks
 - Add photos on each park page
-- Chat feature with friends
-- Send parks to friends
 ___
 ## Api
   [National Park Api](https://rapidapi.com/jonahtaylor/api/national-park-service/)

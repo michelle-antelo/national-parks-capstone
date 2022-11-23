@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}Park Info{% endblock %}
+
+{% block content %}
+    <h1>{{ park_info[0].fullName}}</h1>
+    <div>
+        <p>{{ park_info[0].description }}</p>
+    </div>
+{% endblock %}

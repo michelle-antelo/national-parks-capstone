@@ -27,23 +27,46 @@ app.app_context().push()
 connect_db(app)
 
 ##############################################################################
-# Homepage
+# Homepage/Park Info
 
 @app.route('/', methods=["GET", "POST"])
 def homepage():
     """Home page lists parks"""
-    get_parks = get_parks_list().json()
-    parks_list = get_parks['data']
+
+    search = request.args.get('q')
+
+    if not search:
+        resp = requests.get(
+            f"{API_URL}/parks?api_key={API_KEY}",
+            headers={"accept": "application/json"}
+    )
+        get_parks = resp.json()
+        parks_list = get_parks['data']
+
+    else:
+        print("hello?")
+        resp = requests.get(
+            f"{API_URL}/parks?stateCode={search}",
+            headers={"accept": "application/json"},
+            params={'api_key': {API_KEY}, 'stateCode': '{search}'})
+
+        get_parks = resp.json()
+        parks_list = get_parks['data']
 
     return render_template("home.html", parks_list=parks_list)
 
-def get_parks_list():
-    """Get parks from api"""
-    resp = requests.get(
-        f"{API_URL}/parks?api_key={API_KEY}",
-        headers={"accept": "application/json"}
-    )
-    return resp
+
+@app.route('/info/<parkCode>', methods=["GET", "POST"])
+def get_park(parkCode):
+    res = requests.get(
+        f"{API_URL}/parks?parkCode={parkCode}",
+        headers={"accept": "application/json"},
+        params={'api_key': {API_KEY}, 'parkCode': '{parkCode}'})
+
+    get_park = res.json()
+    park_info = get_park['data']
+    
+    return render_template('info.html', park_info=park_info)
 
 ##############################################################################
 # User signup/login/logout

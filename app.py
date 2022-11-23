@@ -1,6 +1,6 @@
 import os 
 
-from flask import Flask, session, request, render_template, redirect, flash, g
+from flask import Flask, session, request, render_template, redirect, flash, g, jsonify
 from sqlalchemy.exc import IntegrityError
 import requests
 
@@ -32,17 +32,18 @@ connect_db(app)
 @app.route('/', methods=["GET", "POST"])
 def homepage():
     """Home page lists parks"""
-    parks_list = get_parks_list()
-    print('Rsponse: ', parks_list.json())
+    get_parks = get_parks_list().json()
+    parks_list = get_parks['data']
+
     return render_template("home.html", parks_list=parks_list)
 
 def get_parks_list():
     """Get parks from api"""
-    response = requests.get(
+    resp = requests.get(
         f"{API_URL}/parks?api_key={API_KEY}",
         headers={"accept": "application/json"}
     )
-    return response
+    return resp
 
 ##############################################################################
 # User signup/login/logout

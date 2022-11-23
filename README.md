@@ -17,7 +17,7 @@ This app will highlight facts and information of all the US National Parks. Thro
 ___
 ### Features
 - Parks
-  - Parks List
+  - Parks List - done
   - Parks Data Page
   - Users can favorite Parks
 - Add Users - done

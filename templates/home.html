@@ -4,9 +4,21 @@
 
 {% block content %}
     <h1>Home Page</h1>
+    <div class="parks-container">
+        {% for park in parks_list %}
+        <div class="park-wrapper" id="{{park.id}}" >
+            <div class="park-text-wrapper">
+                <div class="profile-image-container">
+                  <div class="profile-image" style="background-image: url('{{park.images[0].url}}');" alt="{{ park.images[0].altText }}"></div>
+                    <p>{{park.images[0].title}}</p>
+                </div>
+                <h1>{{park.fullName}}</h1>
+                <h2>Lat/Long: ( {{park.latitude}}, {{park.longitude}} )</h2>
+                <p>{{park.description}}</p>
 
-<div>
-    {% block parks_list %}{% endblock %}
-</div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 
 {% endblock %}

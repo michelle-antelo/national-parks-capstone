@@ -11,11 +11,12 @@ CURR_USER_KEY = "curr_user"
 
 API_KEY = os.environ.get('API_KEY')
 API_URL = os.environ.get('API_URL')
+DATABASE_URL = os.environ.get('DATABASE_URL')
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = (
-    os.environ.get('DATABASE_URL', 'postgresql:///natty_parks'))
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
+    'DATABASE_URL', DATABASE_URL)
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = False

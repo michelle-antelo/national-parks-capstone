@@ -12,11 +12,14 @@ CURR_USER_KEY = "curr_user"
 API_KEY = os.environ.get('API_KEY')
 API_URL = os.environ.get('API_URL')
 DATABASE_URL = os.environ.get('DATABASE_URL')
+HEROKU_DATABASE_URL = os.environ.get('HEROKU_DATABASE_URL')
+
+if HEROKU_DATABASE_URL.startswith("postgres://"):
+    HEROKU_DATABASE_URL = HEROKU_DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
-    'DATABASE_URL', DATABASE_URL)
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', HEROKU_DATABASE_URL)
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = False
@@ -45,7 +48,6 @@ def homepage():
         parks_list = get_parks['data']
 
     else:
-        print("hello?")
         resp = requests.get(
             f"{API_URL}/parks?stateCode={search}",
             headers={"accept": "application/json"},

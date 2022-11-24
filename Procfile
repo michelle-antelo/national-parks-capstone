@@ -1,1 +1,1 @@
-web: gunicorn app:natty-parks
+web: gunicorn app:app

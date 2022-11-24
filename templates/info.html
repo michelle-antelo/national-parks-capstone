@@ -6,5 +6,8 @@
     <h1>{{ park_info[0].fullName}}</h1>
     <div>
         <p>{{ park_info[0].description }}</p>
+        <div class="profile-image" style="background-image: url('{{park_info.images[0].url}}');" alt="{{ park_info.images[0].altText }}"></div>
+        <p>{{park_info.images[0].title}}</p>
+    </div>
     </div>
 {% endblock %}

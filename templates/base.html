@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="../static/style.css">
     <link rel="stylesheet" href="../static/profile.css">
+    <link rel="stylesheet" href="../static/forms.css">
 </head>
 {% block body %}
     <nav class="nav-bar">
@@ -23,16 +24,16 @@
                     <div class="nav-button"><a href='/logout'>Logout</a></div>
                 {% endif %}
                 {% if request.endpoint != None %}
-                <form class="nav-button" action="/users">
-                    <input name="q" class="form-control" placeholder="Find friends" id="search">
+                <form action="/users" class="nav-search-wrapper">
+                    <input name="q" class="nav-search" placeholder="Find friends" id="search">
                 </form>
                 {% endif %}
             </div>
         </div>
     </nav>
-    <div class="container">
+    <div class="flash-container">
         {% for category, message in get_flashed_messages(with_categories=True) %}
-        <div class="alert alert-{{ category }}">{{ message }}</div>
+        <div class="alert-{{ category }}">{{ message }}</div>
         {% endfor %}
     </div>
     

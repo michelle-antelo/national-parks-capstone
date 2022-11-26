@@ -3,31 +3,19 @@
   {% if users|length == 0 %}
     <h3>Sorry, no users found</h3>
   {% else %}
-    <div class="row justify-content-end">
-      <div class="col-sm-9">
-        <div class="row">
-
-          {% for user in users %}
-          <div class="user-card">
-            <div class="card-contents">
-                <div class="image-wrapper">
-                    <img src="{{ user.image_url }}" alt="profile picture for {{ user.username }}">
-                </div>
-                <div class="user-full-name">
-                    <p>{{ user.first_name }} {{ user.last_name }}</p>
-                </div>
-                <div class="user-username">
-                    <a href="/users/{{ user.id }}" class="card-link">@{{ user.username }}</a>
-                </div>
-                <div class="user-bio">
-                    <p>{{ user.bio }}</p>
-                </div>
-            </div>
+    <div class="users-div">
+      {% for user in users %}
+        <div class="card-contents">
+          <div class="image-wrapper">
+            <img class="user-image" src="{{ user.image_url }}" alt="profile picture for {{ user.username }}">
           </div>
-          {% endfor %}
-
+          <div class="content-wrapper">
+            <p class="user-name">{{ user.first_name }} {{ user.last_name }}</p>
+            <a href="/users/{{ user.id }}" class="card-link">@{{ user.username }}</a>
+            <p class="user-bio">{{ user.bio }}</p>
+          </div>
         </div>
-      </div>
+      {% endfor %}
     </div>
   {% endif %}
 {% endblock %}

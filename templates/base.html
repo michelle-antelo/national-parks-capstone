@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../static/style.css">
     <link rel="stylesheet" href="../static/profile.css">
     <link rel="stylesheet" href="../static/forms.css">
+    <link rel="stylesheet" href="../static/users.css">
 </head>
 {% block body %}
     <nav class="nav-bar">
@@ -25,7 +26,7 @@
                 {% endif %}
                 {% if request.endpoint != None %}
                 <form action="/users" class="nav-search-wrapper">
-                    <input name="q" class="nav-search" placeholder="Find friends" id="search">
+                    <input name="q" class="nav-search" placeholder="Find friends by username" id="search">
                 </form>
                 {% endif %}
             </div>

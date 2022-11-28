@@ -11,11 +11,15 @@ CURR_USER_KEY = "curr_user"
 
 API_KEY = os.environ.get('API_KEY')
 API_URL = os.environ.get('API_URL')
+DATABASE_URL = os.environ.get('DATABASE_URL')
+HEROKU_DATABASE_URL = os.environ.get('HEROKU_DATABASE_URL')
+
+if HEROKU_DATABASE_URL.startswith("postgres://"):
+    HEROKU_DATABASE_URL = HEROKU_DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = (
-    os.environ.get('DATABASE_URL', 'postgresql:///natty_parks'))
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', HEROKU_DATABASE_URL)
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = False
@@ -44,7 +48,6 @@ def homepage():
         parks_list = get_parks['data']
 
     else:
-        print("hello?")
         resp = requests.get(
             f"{API_URL}/parks?stateCode={search}",
             headers={"accept": "application/json"},
@@ -102,11 +105,11 @@ def signup():
     if form.validate_on_submit():
         try:
             user = User.signup(
-                username=form.username.data,
-                first_name=form.first_name.data,
-                last_name=form.last_name.data,
+                username=form.username.data.lower(),
+                first_name=form.first_name.data.capitalize(),
+                last_name=form.last_name.data.capitalize(),
                 password=form.password.data,
-                email=form.email.data,
+                email=form.email.data.lower(),
                 image_url=form.image_url.data or User.image_url.default.arg,
                 bio=form.bio.data,
             )
@@ -169,18 +172,15 @@ def view_profile():
 def edit_profile():
     """Edit profile"""
     user = User.query.get(session[CURR_USER_KEY])
-    form = UpdateUserForm()
+    form = UpdateUserForm(obj=user)
 
     if form.validate_on_submit():
-        user.username=form.username.data,
-        user.first_name=form.first_name.data,
-        user.last_name=form.last_name.data,
-        user.password=form.password.data,
-        user.email=form.email.data,
+        user.username=form.username.data.lower(),
+        user.first_name=form.first_name.data.capitalize(),
+        user.last_name=form.last_name.data.capitalize(),
         user.image_url=form.image_url.data or User.image_url.default.arg,
-        user.header_image_url=form.header_image_url.data or User.header_image_url.default.arg,
+        user.location=form.location.data or User.location.default.arg,
         user.bio=form.bio.data
-        user.location=form.location.data
             
         db.session.commit()
 
@@ -188,7 +188,6 @@ def edit_profile():
         return redirect(f"/profile")
 
     elif IntegrityError:
-        # flash("Username already taken", 'danger')
         return render_template('users/edit.html', form=form)
 
     else:

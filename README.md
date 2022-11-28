@@ -5,10 +5,9 @@ Table Of Contents
 - [Natty Parks App](#natty-parks-app)
   - [Description](#description)
     - [Features](#features)
-    - [Planned Features](#planned-features)
+    - [Planned Bonus Features](#planned-bonus-features)
   - [Api](#api)
   - [Initializing Project](#initializing-project)
-  - [User Story](#user-story)
   - [Data Flow](#data-flow)
   - [Database Schema](#database-schema)
 ___
@@ -30,8 +29,8 @@ ___
     - Login User form
     - Signup User Form
 ___
-### Planned Features
-- Search Bar - done
+### Planned Bonus Features
+- Search Bar
 - Users Can
   - Plan trips to locations! 
   - Insert Photos
@@ -43,7 +42,6 @@ ___
   - Submit ratings
   - Comments 
 - Add a map View of all the parks
-- Add photos on each park page
 ___
 ## Api
   [National Park Api](https://rapidapi.com/jonahtaylor/api/national-park-service/)
@@ -56,19 +54,6 @@ ___
     $ createdb natty_parks   
     $ db.create.all()
     $ flask run
-___
-## User Story
-As a Hiker
-<br> 
-When I search for parks that have hikes in them
-<br>
-Then the app suggests some parks with hikes
-<br><br>
-As a Chatty user
-<br> 
-When I save a location to the app
-<br>
-Then the app saves it for me in my profile
 ___
 ## Data Flow
 Login Flow

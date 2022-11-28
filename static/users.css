@@ -1,0 +1,69 @@
+.users-div{
+    text-align: center;
+    background-image: url("https://media.cntraveler.com/photos/5ea78adfdce5f40008b2e2ca/master/w_3231,h_2154,c_limit/Canyonlands-National-Park-GettyImages-565451793.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 20px;
+}
+
+.card-contents{
+    display: grid;
+    grid-template-columns: .5fr 2fr;
+    padding: 20px;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding-bottom: 0px;
+    border-style: double;
+    border-color: rgb(25, 76, 46);
+    margin-top: 0px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.701);
+}
+.card-contents:after{
+    content:"";
+    display: table;
+    clear: both;
+}
+.image-wrapper{
+    width: 300px;
+    height: 300px;
+    float: left;
+}
+.user-image{
+    width: 300px;
+    height: 300px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.content-wrapper{
+    float: left;
+    height: 300px;
+    padding: 20px;
+    padding-bottom: 0;
+    text-align: left;
+}
+
+.user-name{
+    font-size: 40px;
+    font-weight: 500;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.card-link{
+     padding: 10px;
+     padding-right: 15px;
+     margin: 5px;
+     font-size: 20px;
+}
+
+.user-bio{
+    font-weight: 100;
+    font-size: 30px;
+}
+
+.users-not-found{
+    text-align: center;
+}

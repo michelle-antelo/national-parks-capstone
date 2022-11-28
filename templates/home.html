@@ -3,27 +3,26 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-    <h1>Home Page</h1>
-    {% if request.endpoint != None %}
-        <form class="search-park" action="/">
-            <input name="q" placeholder="Search states ex. WY" id="search">
-        </form>
-    {% endif %}
-    <div class="parks-container">
-        {% for park in parks_list %}
-        <div class="park-wrapper" id="{{park.id}}" >
-            <div class="park-text-wrapper">
-                <div class="profile-image-container">
-                  <div class="profile-image" style="background-image: url('{{park.images[0].url}}');" alt="{{ park.images[0].altText }}"></div>
-                    <p>{{park.images[0].title}}</p>
+    <div class="home-container">
+        <h1 class="home-title">Welcome to Natty Parks!</h1>
+        {% if request.endpoint != None %}
+            <form class="search-form" action="/">
+                <input class="search-state" name="q" placeholder="Search state by code (e.g. CA)" id="search">
+            </form>
+        {% endif %}
+        <div class="parks-container">
+            {% for park in parks_list %}
+            <div class="park-wrapper" id="{{park.id}}" >
+                <div class="park-image-container">
+                    <div class="park-image" style="background-image: url('{{park.images[0].url}}');" alt="{{ park.images[0].altText }}"></div>
                 </div>
-                <a href="/info/{{park.parkCode}}">{{ park.fullName }}</a>
-                <h2>Lat/Long: ( {{park.latitude}}, {{park.longitude}} )</h2>
-                <p>{{park.description}}</p>
-
+                <div class="park-text-wrapper">
+                    <a class="park-card-title" href="/info/{{park.parkCode}}">{{ park.fullName }} - {{ park.states }}</a>
+                    <p>{{park.description}}</p>
+                </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
 
 {% endblock %}

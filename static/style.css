@@ -92,3 +92,9 @@ html, body {
     background-color: rgba(120, 209, 93, 0.848);
     padding: 5px;
 }
+
+.header-image{
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

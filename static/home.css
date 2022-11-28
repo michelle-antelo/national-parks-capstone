@@ -1,0 +1,80 @@
+.home-container{
+    text-align: center;
+    background-image: url("https://media.cntraveler.com/photos/5ea78adfdce5f40008b2e2ca/master/w_3231,h_2154,c_limit/Canyonlands-National-Park-GettyImages-565451793.jpg");
+    background-repeat:repeat-y;
+    background-size:contain;
+}
+.park-wrapper{
+    display: grid;
+    grid-template-columns: .5fr 2fr;
+    padding: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-bottom: 0px;
+    border-style: double;
+    border-color: rgb(25, 76, 46);
+    margin-top: 0px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.772);
+}
+
+.park-wrapper:after{
+    content:"";
+    display: table;
+    clear: both;
+}
+
+.park-image-container{
+    width: 300px;
+    height: 300px;
+    float: left;
+}
+
+.park-image{
+    width: 300px;
+    height: 300px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.park-text-wrapper{
+    float: left;
+    height: 300px;
+    padding: 20px;
+    padding-bottom: 0;
+    text-align: left;
+    font-weight: 200;
+    line-height: 1.8;
+}
+
+.home-title{
+    font-size: 50px;
+    color: rgb(253, 167, 68);
+    margin-top: 0;
+    padding-top: 85px;
+    margin-bottom: 35px;
+    text-shadow: rgb(139, 75, 2) 2px 2px;
+}
+
+.search-form{
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.search-state{
+    border-radius: 10px;
+    width: 30%;
+}
+
+.park-card-title{
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: 400;
+    color: rgb(253, 167, 68);
+    text-shadow: rgb(139, 75, 2) .5px .5px;
+}
+
+.park-card-title:hover{
+    color:rgb(139, 75, 2);
+}

@@ -3,12 +3,57 @@
 {% block title %}Park Info{% endblock %}
 
 {% block content %}
-    <h1>{{ park_info[0].fullName}}</h1>
-    <div>
-        <p>{{ park_info[0].description }}</p>
-        <!-- <div class="profile-image" style="background-image: url('{{park_info[0].images[0].url}}');" alt="{{ park_info[0].images[0].altText }}"></div>
-        <p>{{park_info[0].images[0].title}}</p> -->
-        <img src="{{park_info[0].images[0].url}}"/>
-    </div>
+    <div class="page-container">
+        <h1 class="park-name">{{ park_info[0].fullName}}</h1>
+        <div class="park-description">
+            <p>{{ park_info[0].description }}</p>
+        </div>
+        <div id="image-strip">
+            <div class="image-strip-container">
+                <h1 class="strip-image-title">{{park_info[0].images[0].title}}</h1>
+                <img class="strip-image" style="display: inline; margin: 0 5px;" src="{{park_info[0].images[0].url}}" alt="{{ park_info[0].images[0].altText }}">
+                <p class="strip-image-caption">{{park_info[0].images[0].caption}}</p>
+            </div>
+            <div class="image-strip-container">
+                <h1 class="strip-image-title">{{park_info[0].images[1].title}}</h1>
+                <img class="strip-image" style="display: inline; margin: 0 5px;" src="{{park_info[0].images[1].url}}" alt="{{ park_info[0].images[1].altText }}">
+                <p class="strip-image-caption">{{park_info[0].images[1].caption}}</p>
+            </div>
+            <div class="image-strip-container">
+                <h1 class="strip-image-title">{{park_info[0].images[2].title}}</h1>
+                <img class="strip-image" style="display: inline; margin: 0 5px;" src="{{park_info[0].images[2].url}}" alt="{{ park_info[0].images[2].altText }}">
+                <p class="strip-image-caption">{{park_info[0].images[2].caption}}</p>
+            </div>
+            <div class="image-strip-container">
+                <h1 class="strip-image-title">{{park_info[0].images[3].title}}</h1>
+                <img class="strip-image" style="display: inline; margin: 0 5px;" src="{{park_info[0].images[3].url}}" alt="{{ park_info[0].images[3].altText }}">
+                <p class="strip-image-caption">{{park_info[0].images[3].caption}}</p>
+            </div>
+        </div>
+        <div class="park-description">
+            <div class="park-subtitle">
+                <h2>{{park_info[0].addresses[0].line1}} {{park_info[0].addresses[0].city}}, {{park_info[0].addresses[0].stateCode}} {{park_info[0].addresses[0].postalCode}}</h2>
+            </div>
+            <p class="lat-long">{{park_info[0].latLong}}</p>
+            <p>{{park_info[0].directionsInfo}}</p>
+            <p>For directions, visit <a href="{{park_info[0].directionsUrl}}">{{park_info[0].directionsUrl}}</a></p>
+        </div>
+        <div class="park-description">
+            <div class="park-subtitle">
+                <h2>Weather</h2>
+            </div>
+            <p>{{park_info[0].weatherInfo}}</p>
+        </div>
+        <div class="park-description">
+            <div class="park-subtitle">
+                <h2>Activities</h2>
+            </div>
+            {% for activity in park_info[0].activities %}
+            <p> {{ activity.name }} </p>
+            {% endfor %}
+        </div>
+        <div class="park-description">
+            <p>For more information, visit <a href="{{ park_info[0].url }}">{{ park_info[0].url }}</a></p>
+        </div>
     </div>
 {% endblock %}

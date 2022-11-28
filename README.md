@@ -3,6 +3,7 @@ By Michelle Antelo
 ___
 Table Of Contents
 - [Natty Parks App](#natty-parks-app)
+  - [App Heroku Link](#app-heroku-link)
   - [Description](#description)
     - [Features](#features)
     - [Planned Bonus Features](#planned-bonus-features)
@@ -10,6 +11,10 @@ Table Of Contents
   - [Initializing Project](#initializing-project)
   - [Data Flow](#data-flow)
   - [Database Schema](#database-schema)
+___
+## App Heroku Link
+https://natty-parks.herokuapp.com
+
 ___
 ## Description
 This app will highlight facts and information of all the US National Parks. Through this app, users will be able to create an account allowing them to favorite and plan future trips to these locations! Once they've visited a location, they can insert their photos, caption their memories, and upload them for all of their friends and families to see! They will also be able to submit ratings and comments on visited locations for everyone else to see!
